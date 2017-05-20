@@ -1,11 +1,8 @@
 import React from 'react';
 import s from './style.styl';
-import CssCombine from '../util/cssCombine'
 import {fromJS} from 'immutable'
 import testInput from '../util/testInput'
 import {from} from 'immutable/contrib/cursor'
-var css = new CssCombine({style: s});
-
 class Text extends React.Component {
     constructor(props) {
         super(props);
@@ -42,9 +39,8 @@ class Text extends React.Component {
         const p = this.props;
         const $$data = from(this.state.$$s, ['data'], $$newS => this._setIn($$newS));
         var isWarn = this._isWarn();
-        var rootClass = `${ css.combine('BhyTextFile', isWarn && '-warn', p.full && '-full', $$data.get('focus') && '-focus') }`;
         return (
-          <div className={  `${ p.className } ${ rootClass }`  }>
+          <div className={  `${ p.className } ${ s['BhyTextFile'] } ${ isWarn && s['warn'] } ${ p.full && s['full'] } ${ $$data.get('focus') && 'focues' }`  }>
               { p.label != '' && p.showLabel && (
                 <div className={ s['BhyTextFile-label'] } style={ {width: `${ p.labelWith }`} }>
                     <p>
@@ -75,29 +71,30 @@ class Text extends React.Component {
                   ) }
               </div>
 
-              <div className={ s['BhyTextFile-line'] }>
-                  <span className={ s['BhyTextFile-line-focus'] }/>
-                  <span className={ s['BhyTextFile-line-noFocus'] }/>
-              </div>
-
+              { p.theme == 'line' && (
+                <div className={ s['BhyTextFile-line'] }>
+                    <span className={ s['BhyTextFile-line-focus'] }/>
+                    <span className={ s['BhyTextFile-line-noFocus'] }/>
+                </div>
+              )}
           </div>
         );
     }
 }
 var cn = {
-    maxErrorText: '[label]不可以超过[max]个字符',
-    minErrorText: '[label]不可少于[min]个字符',
-    rexErrorText: '[label]格式不对',
-    numberErrorText: '[label]必须是数组',
-    emptyErrorText: '[label]不可为空',
+    maxErrorText: '[label]不可以超过[max]个字符！',
+    minErrorText: '[label]不可少于[min]个字符！',
+    rexErrorText: '[label]格式不对！',
+    numberErrorText: '[label]必须是数组！',
+    emptyErrorText: '[label]不可为空！',
 };
 
 var en = {
-    maxErrorText: '[label] max length is [max]',
-    minErrorText: '[label] min length is [min]',
-    rexErrorText: '[label] format is wrong',
-    numberErrorText: '[label] must is number',
-    emptyErrorText: '[label]not allow empty',
+    maxErrorText: '[label] max length is [max]！',
+    minErrorText: '[label] min length is [min]！',
+    rexErrorText: '[label] format is wrong！',
+    numberErrorText: '[label] must is number！',
+    emptyErrorText: '[label]not allow empty！',
 };
 Text.defaultProps = {
     theme: 'border',
@@ -114,7 +111,9 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
+    className: React.PropTypes.string,
     labelWith: React.PropTypes.string,
+    showLabel: React.PropTypes.bool,
     inputWith: React.PropTypes.string,
     full: React.PropTypes.bool,
     language: React.PropTypes.string,
@@ -140,8 +139,6 @@ Text.propTypes = {
     require: React.PropTypes.bool,
     onChange: React.PropTypes.fun,
     errorText: React.PropTypes.string,
-    showLabel: React.PropTypes.bool,
-    className: React.PropTypes.string,
 
 };
 

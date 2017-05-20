@@ -29,7 +29,7 @@ class Main extends React.Component {
         const $$data = from(this.state.$$s, ['data'], $$newS => this.setIn($$newS));
 
         const $$cInput = $$data.get('cInput');
-        const labelWith = '110px'
+        const labelWith = '110px';
         return (
           <div className="main">
              <div className="main-inputList">
@@ -38,6 +38,7 @@ class Main extends React.Component {
                    label={ `username` }
                    type={ `text`}
                    max={ 16 }
+                   maxErrorText={ `out length(max [max])` }
                    min={ 5 }
                    value={ $$cInput.get('username') }
                    onChange={ ({value}) => $$cInput.set('username', value)  }
