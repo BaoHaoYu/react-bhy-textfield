@@ -4,65 +4,74 @@ line-height text-align background image no-repeat color url position fixed borde
 transition animation family Microsoft Yahei white-space nowrap float hidden overflow scroll linear keyframes transform scale rotate translate font family font size*/
 /*endregion*/
 
-time = 1.5s
-.boxLoading
-    position absolute
-    cursor progress
-    z-index 1000
-    background #f6f6f6
-    width 100%
-    height 100%
-    left 0
-    top 0
-    display table-cell
-    vertical-align middle
-    text-align center
-    &-fullWindow
-        position fixed
-    &-opacity
-        background rgba(255, 255, 255, 0.6)
-    &-contain
-        height 100%
+warnColor = #a94442
+.BhyTextFile
+    position relative
+    display table
+    *
+        margin 0
+        padding 0
+        box-sizing border-box
+    input
+        outline 0
+    &-border
+        position static
+    &-warn
+        position static
+        .BhyTextFile
+            &-label
+                &-name
+                &-mao
+                    color warnColor
+            &-input
+                input
+                    box-shadow inset 0 1px 1px rgba(0,0,0,.075)
+                    border-color warnColor
+                    &:focus
+                        border-color #843534
+                        box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483
+    &-full
         width 100%
-        display table
-    &-content
+        .BhyTextFile
+            &-input
+                width 100%
+
+    &-focus
+        position static
+    &-label
         display table-cell
         vertical-align middle
-        text-align center
-        > span
+        text-align right
+        >*
             display inline-block
-            width 15px
-            height 15px
-            background #07d1ff
-            border-radius 50% !important
-            transform scale(0)
-            &:nth-child(1)
-                animation: loading0 time ease-in-out infinite;
-            &:nth-child(2)
-                animation: loading1 time ease-in-out infinite;
-            &:nth-child(3)
-                animation: loading2 time ease-in-out infinite;
+        &-name
+            position static
+        &-mao
+            position static
+            margin 0 5px
 
-@keyframes loading0
-    0%
-        transform scale(0)
-    30%
-        transform scale(1)
-    60%
-        transform scale(0)
-
-@keyframes loading1
-    10%
-        transform scale(0)
-    40%
-        transform scale(1)
-    70%
-        transform scale(0)
-
-@keyframes loading2
-    30%
-        transform scale(0)
-    60%
-        transform scale(1)
-    90%
-        transform scale(0)
+    &-input
+        vertical-align middle
+        position relative
+        input
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            &:focus
+                box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+                outline 0
+                border-color: #66afe9
+    &-errorText
+        font-size 12px
+        color warnColor
+        position absolute
+        margin-top 2px
