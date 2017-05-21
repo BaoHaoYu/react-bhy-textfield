@@ -130,136 +130,147 @@ class Main extends React.Component {
                       </button>
                   </div>
               </div>
-              <div className="main-inputList">
-
+              <div>
+                  <h3>base</h3>
                   <Text
                     labelWith={ labelWith }
                     iconClass={ `fa fa-address-book` }
-                    label={ `username` }
-                    type={ `text`}
-                    full={ $$common.get('fullWidth') }
-                    max={ 16 }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    size={ $$common.get('size') }
-                    layout={ $$common.get('layout') }
-                    placeholder={ `new username` }
-                    theme={ $$common.get('theme') }
-                    maxErrorText={ `out length(max [max])` }
-                    min={ 5 }
-                    value={ $$cInput.get('username') }
-                    onChange={ ({value}) => $$cInput.set('username', value)  }
-                  />
-
-                  <Text
-                    labelWith={ labelWith }
-                    label={ `password` }
-                    type={ `password`}
-                    iconClass={ `fa fa-key` }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    full={ $$common.get('fullWidth') }
-                    theme={ $$common.get('theme') }
-                    layout={ $$common.get('layout') }
-                    size={ $$common.get('size') }
-                    max={ 16 }
-                    min={ 4 }
-                    placeholder={ '密码' }
-                    value={ $$cInput.get('password') }
-                    onChange={ ({value}) => $$cInput.set('password', value)  }
-                  />
-
-                  <Text
-                    labelWith={ labelWith }
-                    label={ `user phone` }
-                    theme={ $$common.get('theme') }
-                    type={ `text` }
-                    iconClass={ `fa fa-phone` }
-                    placeholder={ `phone` }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    full={ $$common.get('fullWidth') }
-                    size={ $$common.get('size') }
-                    value={ $$cInput.get('phone') }
-                    layout={ $$common.get('layout') }
-                    max={ null }
-                    min={ null }
-                    rex={ /^\d{4,18}$/ }
-                    rexErrorText={ '[label] error !!!' }
-                    onChange={ ({value}) => $$cInput.set('phone', value)  }
-                  />
-
-                  <Text
-                    labelWith={ labelWith }
-                    label={ `your gmail` }
-                    placeholder={ `gmail , no outlook` }
-                    iconClass={ `fa fa-envelope-o` }
-                    type={ `text` }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    full={ $$common.get('fullWidth') }
-                    layout={ $$common.get('layout') }
-                    theme={ $$common.get('theme') }
-                    value={ $$cInput.get('email') }
-                    size={ $$common.get('size') }
-                    rexs={ [
-                        {
-                            rex: /^.+@.+\..+$/, passIsRight: !0,
-                        },
-                        {
-                            rex: /^.+@outlook\.com$/, passIsRight: !1, errorText: 'not allow outlook',
-                        },
-                        {
-                            rex: /^.+@gmail\.com$/, passIsRight: !0, errorText: '[label] must be gmail',
-                        }
-                    ]}
-                    onChange={ ({value}) => $$cInput.set('email', value)  }
-                  />
-
-                  <Text
-                    labelWith={ labelWith }
-                    label={ `password1` }
-                    type={ `password`}
-                    layout={ $$common.get('layout') }
-                    max={ 16 }
-                    placeholder={ `password 1` }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    full={ $$common.get('fullWidth') }
-                    size={ $$common.get('size') }
-                    iconClass={ `fa fa-key` }
-                    min={ 4 }
-                    theme={ $$common.get('theme') }
-                    value={ $$cInput.get('password1') }
-                    onChange={ ({value}) => $$cInput.set('password1', value)  }
-                  />
-
-                  <Text
-                    labelWith={ labelWith }
-                    label={ `password2` }
-                    iconClass={ `fa fa-key` }
-                    type={ `password`}
-                    placeholder={ `password 2` }
-                    errorTextColor={ $$common.get('errorTextColor') }
-                    lineErrorColor={ $$common.get('lineErrorColor') }
-                    lineFocusColor={ $$common.get('lineFocusColor') }
-                    theme={ $$common.get('theme') }
-                    size={ $$common.get('size') }
-                    layout={ $$common.get('layout') }
-                    full={ $$common.get('fullWidth') }
-                    value={ $$cInput.get('password2') }
-                    errorText={
-                        $$cInput.get('password2') != $$cInput.get('password1') ?
-                          `password2 must equal password1` : ''
-                    }
-                    onChange={ ({value}) => $$cInput.set('password2', value)  }
+                    label={ `base` }
                   />
               </div>
+              <form>
+                  <h3>form</h3>
+                  <div className="main-inputList">
+
+                      <Text
+                        labelWith={ labelWith }
+                        iconClass={ `fa fa-address-book` }
+                        label={ `username` }
+                        type={ `text`}
+                        full={ $$common.get('fullWidth') }
+                        max={ 16 }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        size={ $$common.get('size') }
+                        layout={ $$common.get('layout') }
+                        placeholder={ `new username` }
+                        theme={ $$common.get('theme') }
+                        maxErrorText={ `out length(max [max])` }
+                        min={ 5 }
+                        value={ $$cInput.get('username') }
+                        onChange={ ({value}) => $$cInput.set('username', value)  }
+                      />
+
+                      <Text
+                        labelWith={ labelWith }
+                        label={ `password` }
+                        type={ `password`}
+                        iconClass={ `fa fa-key` }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        full={ $$common.get('fullWidth') }
+                        theme={ $$common.get('theme') }
+                        layout={ $$common.get('layout') }
+                        size={ $$common.get('size') }
+                        max={ 16 }
+                        min={ 4 }
+                        placeholder={ '密码' }
+                        value={ $$cInput.get('password') }
+                        onChange={ ({value}) => $$cInput.set('password', value)  }
+                      />
+
+                      <Text
+                        labelWith={ labelWith }
+                        label={ `user phone` }
+                        theme={ $$common.get('theme') }
+                        type={ `text` }
+                        iconClass={ `fa fa-phone` }
+                        placeholder={ `phone` }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        full={ $$common.get('fullWidth') }
+                        size={ $$common.get('size') }
+                        value={ $$cInput.get('phone') }
+                        layout={ $$common.get('layout') }
+                        max={ null }
+                        min={ null }
+                        rex={ /^\d{4,18}$/ }
+                        rexErrorText={ '[label] error !!!' }
+                        onChange={ ({value}) => $$cInput.set('phone', value)  }
+                      />
+
+                      <Text
+                        labelWith={ labelWith }
+                        label={ `your gmail` }
+                        placeholder={ `gmail , no outlook` }
+                        iconClass={ `fa fa-envelope-o` }
+                        type={ `text` }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        full={ $$common.get('fullWidth') }
+                        layout={ $$common.get('layout') }
+                        theme={ $$common.get('theme') }
+                        value={ $$cInput.get('email') }
+                        size={ $$common.get('size') }
+                        rexs={ [
+                            {
+                                rex: /^.+@.+\..+$/, passIsRight: !0,
+                            },
+                            {
+                                rex: /^.+@outlook\.com$/, passIsRight: !1, errorText: 'not allow outlook',
+                            },
+                            {
+                                rex: /^.+@gmail\.com$/, passIsRight: !0, errorText: '[label] must be gmail',
+                            }
+                        ]}
+                        onChange={ ({value}) => $$cInput.set('email', value)  }
+                      />
+
+                      <Text
+                        labelWith={ labelWith }
+                        label={ `password1` }
+                        type={ `password`}
+                        layout={ $$common.get('layout') }
+                        max={ 16 }
+                        placeholder={ `password 1` }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        full={ $$common.get('fullWidth') }
+                        size={ $$common.get('size') }
+                        iconClass={ `fa fa-key` }
+                        min={ 4 }
+                        theme={ $$common.get('theme') }
+                        value={ $$cInput.get('password1') }
+                        onChange={ ({value}) => $$cInput.set('password1', value)  }
+                      />
+
+                      <Text
+                        labelWith={ labelWith }
+                        label={ `password2` }
+                        iconClass={ `fa fa-key` }
+                        type={ `password`}
+                        placeholder={ `password 2` }
+                        errorTextColor={ $$common.get('errorTextColor') }
+                        lineErrorColor={ $$common.get('lineErrorColor') }
+                        lineFocusColor={ $$common.get('lineFocusColor') }
+                        theme={ $$common.get('theme') }
+                        size={ $$common.get('size') }
+                        layout={ $$common.get('layout') }
+                        full={ $$common.get('fullWidth') }
+                        value={ $$cInput.get('password2') }
+                        errorText={
+                            $$cInput.get('password2') != $$cInput.get('password1') ?
+                              `password2 must equal password1` : ''
+                        }
+                        onChange={ ({value}) => $$cInput.set('password2', value)  }
+                      />
+                  </div>
+              </form>
 
           </div>
         )

@@ -45,6 +45,7 @@ class Text extends React.Component {
                     title={ p.title }
                     name={ p.name }
                     value={ p.value }
+                    defaultValue={ p.defaultValue }
                     placeholder={ p.placeholder }
                     onChange={ e => this.change(e, $$data) }
                     onFocus={ e => this.focus(e, $$data) }
@@ -52,7 +53,7 @@ class Text extends React.Component {
                   />
                   { p.theme == 'line' && (
                     <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  }>
-                        <p className={ `${ s['before'] }` } style={ {backgroundColor: p.lineBorderColor} }/>
+                        <p className={ `${ s['before'] }` } style={ {backgroundColor: isWarn ? p.lineErrorColor : p.lineBorderColor} }/>
                         <p className={ `${ s['after'] }` } style={ {backgroundColor: isWarn ? p.lineErrorColor : p.lineFocusColor} }/>
                     </div>
                   )}
@@ -142,6 +143,7 @@ Text.defaultProps = {
     layout: 'x',
     onFocus: () => {},
     onBlur: () => {},
+    onChange: () => {},
     ...en,
 };
 
@@ -161,7 +163,8 @@ Text.propTypes = {
     name: PropTypes.string,
     placeholder: PropTypes.string,
     passSetValue: PropTypes.bool,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.any.isRequired,
+    defaultValue: PropTypes.any,
 
     max: PropTypes.number,
     min: PropTypes.number,
@@ -184,7 +187,6 @@ Text.propTypes = {
     lineErrorColor: PropTypes.string,
     errorTextColor: PropTypes.string,
 
-    // TODO
     iconClass: PropTypes.string,
 };
 
