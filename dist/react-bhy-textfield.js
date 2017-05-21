@@ -284,6 +284,11 @@ var Text = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-input'], style: { width: p.full ? '100%' : p.inputWith } },
+                    p.iconClass && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-input-icon'] },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: p.iconClass })
+                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
                         type: p.type,
                         title: p.title,
@@ -434,7 +439,10 @@ Text.propTypes = {
     lineBorderColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     lineFocusColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     lineErrorColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
-    errorTextColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string
+    errorTextColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
+
+    // TODO
+    iconClass: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Text);
