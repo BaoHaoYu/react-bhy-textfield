@@ -100,7 +100,7 @@ class Text extends React.Component {
         var value = e.target.value;
         var info = testInput(value, p);
         $$data.set('errorText', info.errorText);
-        p.onChange({value, ...info});
+        p.onChange({e, value, ...info});
     }
 }
 var cn = {
