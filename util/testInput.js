@@ -43,7 +43,7 @@ function min(value, props) {
 }
 
 function testRequire(value, props) {
-    if (props.require && value.length == '') {
+    if (props.require && value.length == 0) {
         return {pass: !1, errorText: replaceLabel(props.emptyErrorText, props)}
     }
     return {pass: !0, errorText: ''}

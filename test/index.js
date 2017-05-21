@@ -38,6 +38,7 @@ class Main extends React.Component {
                    label={ `username` }
                    type={ `text`}
                    max={ 16 }
+                   placeholder={ `new username` }
                    maxErrorText={ `out length(max [max])` }
                    min={ 5 }
                    value={ $$cInput.get('username') }
@@ -90,6 +91,7 @@ class Main extends React.Component {
                    labelWith={ labelWith }
                    label={ `password1` }
                    type={ `password`}
+                   layout={ `y` }
                    max={ 16 }
                    min={ 4 }
                    value={ $$cInput.get('password1') }
@@ -100,6 +102,7 @@ class Main extends React.Component {
                    labelWith={ labelWith }
                    label={ `password2` }
                    type={ `password`}
+                   layout={ `y` }
                    full
                    value={ $$cInput.get('password2') }
                    errorText={
