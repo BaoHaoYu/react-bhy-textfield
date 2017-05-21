@@ -27,6 +27,16 @@ class Text extends React.Component {
         return p.errorText !== '' || $$data.get('errorText') !== '';
     }
 
+    _rootClass({$$data, isWarn}) {
+        const p = this.props;
+        return p.className + ' ' +
+          s['BhyTextFile'] + ' ' +
+          (s['layout' + p.layout] || '') + ' ' +
+          (isWarn ? s['warn'] || '' : '') + ' ' +
+          (p.full ? s['full'] || '' : '') + ' ' +
+          ($$data.get('focus') ? s['focues'] || '' : '')
+    }
+
     focus(e, $$data) {
         const p = this.props;
         $$data.set('focus', !0);
@@ -52,12 +62,7 @@ class Text extends React.Component {
         const $$data = from(this.state.$$s, ['data'], $$newS => this._setIn($$newS));
         var isWarn = this._isWarn();
         return (
-          <div className={ `
-              ${ p.className }
-              ${ s['BhyTextFile'] }
-              ${ s['layout' + p.layout] }
-              ${ isWarn && s['warn'] } ${ p.full && s['full'] }
-              ${ $$data.get('focus') && s['focues'] }` }>
+          <div className={ this._rootClass({$$data, isWarn}) }>
               { p.label != '' && p.showLabel && (
                 <div className={ s['BhyTextFile-label'] } style={ {width: p.layout == 'y' ? '100%' : p.labelWith} }>
                     <label className={ s['BhyTextFile-label-name'] }>{ p.label }</label>
