@@ -17,6 +17,50 @@ class Text extends React.Component {
         };
     }
 
+    render() {
+        const p = this.props;
+        const $$data = from(this.state.$$s, ['data'], $$newS => this._setIn($$newS));
+        var isWarn = this._isWarn();
+        return (
+          <div className={ this._rootClass({$$data, isWarn}) }>
+              { p.label != '' && p.showLabel && (
+                <div className={ s['BhyTextFile-label'] } style={ {width: p.layout == 'y' ? '100%' : p.labelWith} }>
+                    <label className={ s['BhyTextFile-label-name'] } style={ {color: isWarn ? p.errorTextColor : null} }>{ p.label }</label>
+                    { p.layout != 'y' && (
+                      <label className={ s['BhyTextFile-label-mao'] } style={ {color: isWarn ? p.errorTextColor : null} }>:</label>
+                    ) }
+                </div>
+              ) }
+
+              <div className={ s['BhyTextFile-input'] } style={ {width: p.full ? '100%' : p.inputWith} }>
+                  <input
+                    type={ p.type }
+                    title={ p.title }
+                    name={ p.name }
+                    value={ p.value }
+                    placeholder={ p.placeholder }
+                    onChange={ e => this.change(e, $$data) }
+                    onFocus={ e => this.focus(e, $$data) }
+                    onBlur={ e => this.blur(e, $$data) }
+                  />
+                  { p.theme == 'line' && (
+                    <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  }>
+                        <p className={ `${ s['before'] }` } style={ {backgroundColor: p.lineBorderColor} }/>
+                        <p className={ `${ s['after'] }` } style={ {backgroundColor: isWarn ? p.lineErrorColor : p.lineFocusColor} }/>
+                    </div>
+                  )}
+
+                  { isWarn && (
+                    <p className={ s['BhyTextFile-errorText'] } style={ {color: p.errorTextColor} }>{ p.errorText || $$data.get('errorText') }</p>
+                  ) }
+              </div>
+
+
+          </div>
+        );
+    }
+
+
     _setIn($$s) {
         this.setState({$$s})
     }
@@ -57,49 +101,6 @@ class Text extends React.Component {
         var info = testInput(value, p);
         $$data.set('errorText', info.errorText);
         p.onChange({value, ...info});
-    }
-
-    render() {
-        const p = this.props;
-        const $$data = from(this.state.$$s, ['data'], $$newS => this._setIn($$newS));
-        var isWarn = this._isWarn();
-        return (
-          <div className={ this._rootClass({$$data, isWarn}) }>
-              { p.label != '' && p.showLabel && (
-                <div className={ s['BhyTextFile-label'] } style={ {width: p.layout == 'y' ? '100%' : p.labelWith} }>
-                    <label className={ s['BhyTextFile-label-name'] }>{ p.label }</label>
-                    { p.layout != 'y' && (
-                      <label className={ s['BhyTextFile-label-mao'] }>:</label>
-                    ) }
-                </div>
-              ) }
-
-              <div className={ s['BhyTextFile-input'] } style={ {width: p.full ? '100%' : p.inputWith} }>
-                  <input
-                    type={ p.type }
-                    title={ p.title }
-                    name={ p.name }
-                    value={ p.value }
-                    placeholder={ p.placeholder }
-                    onChange={ e => this.change(e, $$data) }
-                    onFocus={ e => this.focus(e, $$data) }
-                    onBlur={ e => this.blur(e, $$data) }
-                  />
-                  { p.theme == 'line' && (
-                    <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  }>
-                        <p className={ `${ s['before'] }` } style={ {backgroundColor: p.lineBorderColor} }/>
-                        <p className={ `${ s['after'] }` } style={ {backgroundColor: isWarn ? p.lineErrorColor : p.lineFocusColor} }/>
-                    </div>
-                  )}
-
-                  { isWarn && (
-                    <p className={ s['BhyTextFile-errorText'] }>{ p.errorText || $$data.get('errorText') }</p>
-                  ) }
-              </div>
-
-
-          </div>
-        );
     }
 }
 var cn = {
@@ -170,11 +171,10 @@ Text.propTypes = {
     onBlur: React.PropTypes.fun,
     errorText: React.PropTypes.string,
 
-    // TODO
     lineBorderColor: React.PropTypes.string,
     lineFocusColor: React.PropTypes.string,
     lineErrorColor: React.PropTypes.string,
-    errorColor: React.PropTypes.string,
+    errorTextColor: React.PropTypes.string,
 };
 
 export default Text;
