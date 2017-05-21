@@ -34,7 +34,12 @@ class Text extends React.Component {
                 </div>
               ) }
 
-              <div className={ s['BhyTextFile-input'] } style={ {width: p.full ? '100%' : p.inputWith} }>
+              <div className={ `${ s['BhyTextFile-input'] } ${ p.iconClass && s['hasIcon'] }` } style={ {width: p.full ? '100%' : p.inputWith} }>
+                  { p.iconClass && (
+                    <div className={ s['boxIcon'] }>
+                        <i className={ p.iconClass }/>
+                    </div>
+                  ) }
                   <input
                     type={ p.type }
                     title={ p.title }
@@ -178,6 +183,9 @@ Text.propTypes = {
     lineFocusColor: PropTypes.string,
     lineErrorColor: PropTypes.string,
     errorTextColor: PropTypes.string,
+
+    // TODO
+    iconClass: PropTypes.string,
 };
 
 export default Text;

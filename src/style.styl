@@ -4,6 +4,9 @@
 // keyframes transform scale rotate translate font family font size
 warnColor = #a94442
 lineHeight = 1.428
+defaultPading = 6px 8px;
+smPading = 3px 5px;
+lineDefaultPading = 6px 6px
 .BhyTextFile
     position relative
     display table
@@ -24,6 +27,7 @@ lineHeight = 1.428
                     box-shadow none
                     border none
                     padding-left 2px
+                    padding-bottom 6px
                     &:focus
                         box-shadow none
                         outline 0
@@ -78,9 +82,31 @@ lineHeight = 1.428
             &-label
                 display block
                 text-align left
-                margin-bottom 4px
+                margin-bottom 2px
             &-input
                 display block
+                .boxIcon // 图标
+                    width 20px
+                    height 20px
+                    position absolute
+                    top 50%
+                    margin-top -10px
+
+                    text-align center
+                    i
+                        color #a2a2a2
+                        font-size 17px
+    &.layouty.line
+        .BhyTextFile
+            &-label
+                margin-bottom 0
+            &-input
+                display block
+                input
+                    padding-left 25px!important
+                .boxIcon // 图标
+                    left 0
+
     &.warn // 警告
         position static
         .BhyTextFile
@@ -126,11 +152,26 @@ lineHeight = 1.428
     &-input // input的基本样式
         vertical-align middle
         position relative
+        &.hasIcon
+            position relative
+            .boxIcon // 图标
+                width 20px
+                height 20px
+                position absolute
+                top 50%
+                margin-top -10px
+                left 8px
+                text-align center
+                i
+                    color #a2a2a2
+                    font-size 17px
+            input
+                padding-left 35px!important
         input
             display: block;
             width: 100%;
             height: 34px;
-            padding: 6px 10px;
+            padding: 6px 8px;
             font-size: 14px;
             line-height: lineHeight;
             color: #555;
