@@ -67,7 +67,7 @@ class Main extends React.Component {
                   <button
                     className=""
                     onClick={ e => $$common.update('size', v => v == 'default' ? 'sm' : 'default') }>
-                      theme :{ $$common.get('size') }
+                      size :{ $$common.get('size') }
                   </button>
 
                   <button

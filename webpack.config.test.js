@@ -87,15 +87,16 @@ module.exports = {
     },
 
     plugins: [
-        // mini
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // }),
-        // env
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        // }),
+        // DLL
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: (() => {
+                try {
+                    return require('./__build__/dll/vendor-manifest.json')
+                } catch (error) {
+                    console.log(error);
+                }
+            })(),
+        }),
     ]
 };
