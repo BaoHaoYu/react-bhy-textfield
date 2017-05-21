@@ -107,8 +107,12 @@ class Text extends React.Component {
         const p = this.props;
         var value = e.target.value;
         var info = testInput(value, p);
-        $$data.set('errorText', info.errorText);
-        p.onChange({e, value, ...info});
+        if (p.passSetValue && !info.pass) {
+            
+        } else {
+            $$data.set('errorText', info.errorText);
+            p.onChange({e, value, ...info});
+        }
     }
 }
 var cn = {
