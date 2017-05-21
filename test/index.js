@@ -50,6 +50,7 @@ class Main extends React.Component {
                    labelWith={ labelWith }
                    label={ `password` }
                    type={ `password`}
+                   theme={ `line` }
                    max={ 16 }
                    min={ 4 }
                    placeholder={ '密码' }
@@ -60,6 +61,7 @@ class Main extends React.Component {
                  <Text
                    labelWith={ labelWith }
                    label={ `user phone` }
+                   theme={ `line` }
                    type={ `text` }
                    value={ $$cInput.get('phone') }
                    max={ null }
@@ -103,6 +105,8 @@ class Main extends React.Component {
                    labelWith={ labelWith }
                    label={ `password2` }
                    type={ `password`}
+                   theme={ `line` }
+                   size={ `sm` }
                    layout={ `y` }
                    full
                    value={ $$cInput.get('password2') }

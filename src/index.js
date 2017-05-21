@@ -32,6 +32,7 @@ class Text extends React.Component {
         return p.className + ' ' +
           s['BhyTextFile'] + ' ' +
           (s[p.size] || '') + ' ' +
+          (s[p.theme] || '') + ' ' +
           (s['layout' + p.layout] || '') + ' ' +
           (isWarn ? s['warn'] || '' : '') + ' ' +
           (p.full ? s['full'] || '' : '') + ' ' +
@@ -84,18 +85,19 @@ class Text extends React.Component {
                     onFocus={ e => this.focus(e, $$data) }
                     onBlur={ e => this.blur(e, $$data) }
                   />
+                  { p.theme == 'line' && (
+                    <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  } >
+                        <p className={ `${ s['before'] }` }/>
+                        <p className={ `${ s['after'] }` }/>
+                    </div>
+                  )}
 
                   { isWarn && (
                     <p className={ s['BhyTextFile-errorText'] }>{ p.errorText || $$data.get('errorText') }</p>
                   ) }
               </div>
 
-              { p.theme == 'line' && (
-                <div className={ s['BhyTextFile-line'] }>
-                    <span className={ s['BhyTextFile-line-focus'] }/>
-                    <span className={ s['BhyTextFile-line-noFocus'] }/>
-                </div>
-              )}
+
           </div>
         );
     }

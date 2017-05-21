@@ -1,10 +1,9 @@
-/*region name */
-/*margin left right top bottom position relative absolute fixed display inline block width height vertical-align letter-spacing padding
-line-height text-align background image no-repeat color url position fixed border radius solid cursor pointer
-transition animation family Microsoft Yahei white-space nowrap float hidden overflow scroll linear keyframes transform scale rotate translate font family font size*/
-/*endregion*/
-
+// margin left right top bottom position relative absolute fixed display inline block width height vertical-align letter-spacing padding
+// line-height text-align background image no-repeat color url position fixed border radius solid cursor pointer
+// transition animation family Microsoft Yahei white-space nowrap float hidden overflow scroll linear
+// keyframes transform scale rotate translate font family font size
 warnColor = #a94442
+lineHeight = 1.428
 .BhyTextFile
     position relative
     display table
@@ -16,33 +15,80 @@ warnColor = #a94442
         box-sizing border-box
     input
         outline 0
-    &.border
+
+    &.line // theme line
         position static
         .BhyTextFile
-            &-line
-                display none
-    &.sm
+            &-input
+                input
+                    box-shadow none
+                    border none
+                    &:focus
+                        box-shadow none
+                        outline 0
+                        border none
+            &-boxLine // 底部直线，无边框的input
+                position absolute
+                width 100%
+                .before
+                .after
+                    width 100%
+                    content ''
+                    position absolute
+                    bottom 0
+                .before
+                    content ''
+                    height 1px
+                    background #c2c2c2
+                .after
+                    height 3px
+                    background #69d8ff
+                    transition all 0.3s
+                    margin auto
+                    width 0
+                    position relative
+                    bottom -1px
+                &.focus
+                    .after
+                        width 100%
+
+    &.border // theme border 带有边框的
+        position static
+        .BhyTextFile
+            &-input
+                input
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+                    &:focus
+                        box-shadow inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+                        outline 0
+                        border-color: #66afe9
+    &.sm // 小尺寸input
         position static
         .BhyTextFile
             &-input
                 input
                     padding 3px 5px
                     height auto
-    &.layouty
+    &.layouty // 垂直布局
         .BhyTextFile
             &-label
                 display block
                 text-align left
-                margin-bottom 6px
+                margin-bottom 4px
             &-input
                 display block
-    &.warn
+    &.warn // 警告
         position static
         .BhyTextFile
             &-label
                 &-name
                 &-mao
                     color warnColor
+
+    &.warn.border // 带有边框的警告
+        .BhyTextFile
             &-input
                 input
                     box-shadow inset 0 1px 1px rgba(0, 0, 0, .075)
@@ -50,49 +96,48 @@ warnColor = #a94442
                     &:focus
                         border-color #843534
                         box-shadow inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483
-    &.full
+    &.warn.line
+        .BhyTextFile
+            &-boxLine // 底部直线，无边框的input
+                &.focus
+                    .after
+                        background warnColor
+    &.full // 满宽度
         width 100%
         .BhyTextFile
             &-input
                 width 100%
-
     &.focus
         position static
-    &-label
+    &-label // 侧边label
         display table-cell
         vertical-align middle
         text-align right
         > *
             display inline-block
             font-size 14px
-        &-name
-            position static
+            color #575757
+            position relative
+            top -1px
         &-mao
-            position static
             margin 0 5px
-
-    &-input
+    &-input // input的基本样式
         vertical-align middle
         position relative
         input
             display: block;
             width: 100%;
             height: 34px;
-            padding: 6px 12px;
+            padding: 6px 10px;
             font-size: 14px;
-            line-height: 1.42857143;
+            line-height: lineHeight;
             color: #555;
             background-color: #fff;
             background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-            &:focus
-                box-shadow inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
-                outline 0
-                border-color: #66afe9
-    &-errorText
+            &::placeholder
+                color #b6b6b6
+    &-errorText // 错误文本的
         font-size 12px
         color warnColor
         position absolute
-        margin-top 2px
+        margin-top 3px
