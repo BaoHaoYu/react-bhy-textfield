@@ -31,6 +31,7 @@ class Text extends React.Component {
         const p = this.props;
         return p.className + ' ' +
           s['BhyTextFile'] + ' ' +
+          (s[p.size] || '') + ' ' +
           (s['layout' + p.layout] || '') + ' ' +
           (isWarn ? s['warn'] || '' : '') + ' ' +
           (p.full ? s['full'] || '' : '') + ' ' +
@@ -126,6 +127,7 @@ Text.defaultProps = {
     rexPassIsRight: !0,
     className: '',
     inputWith: '200px',
+    size: 'default', // sm
     layout: 'x',
     onFocus: () => {},
     onBlur: () => {},
@@ -138,7 +140,7 @@ Text.propTypes = {
     layout: React.PropTypes.string,
     theme: React.PropTypes.string,
     language: React.PropTypes.string,
-
+    size: React.PropTypes.string,
     showLabel: React.PropTypes.bool,
     inputWith: React.PropTypes.string,
     full: React.PropTypes.bool,

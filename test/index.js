@@ -38,6 +38,7 @@ class Main extends React.Component {
                    label={ `username` }
                    type={ `text`}
                    max={ 16 }
+                   size={ `sm` }
                    placeholder={ `new username` }
                    maxErrorText={ `out length(max [max])` }
                    min={ 5 }
