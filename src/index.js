@@ -86,9 +86,9 @@ class Text extends React.Component {
                     onBlur={ e => this.blur(e, $$data) }
                   />
                   { p.theme == 'line' && (
-                    <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  } >
-                        <p className={ `${ s['before'] }` }/>
-                        <p className={ `${ s['after'] }` }/>
+                    <div className={ `${ s['BhyTextFile-boxLine'] } ${ $$data.get('focus') && s['focus']  }`  }>
+                        <p className={ `${ s['before'] }` } style={ {backgroundColor: p.lineBorderColor} }/>
+                        <p className={ `${ s['after'] }` } style={ {backgroundColor: isWarn ? p.lineErrorColor : p.lineFocusColor} }/>
                     </div>
                   )}
 
@@ -170,6 +170,11 @@ Text.propTypes = {
     onBlur: React.PropTypes.fun,
     errorText: React.PropTypes.string,
 
+    // TODO
+    lineBorderColor: React.PropTypes.string,
+    lineFocusColor: React.PropTypes.string,
+    lineErrorColor: React.PropTypes.string,
+    errorColor: React.PropTypes.string,
 };
 
 export default Text;
