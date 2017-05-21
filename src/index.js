@@ -27,6 +27,18 @@ class Text extends React.Component {
         return p.errorText !== '' || $$data.get('errorText') !== '';
     }
 
+    focus(e, $$data) {
+        const p = this.props;
+        $$data.set('focus', !0);
+        p.onFocus(e);
+    }
+
+    blur(e, $$data) {
+        const p = this.props;
+        $$data.set('focus', !1);
+        p.onBlur(e);
+    }
+
     change(e, $$data) {
         const p = this.props;
         var value = e.target.value;
@@ -40,17 +52,18 @@ class Text extends React.Component {
         const $$data = from(this.state.$$s, ['data'], $$newS => this._setIn($$newS));
         var isWarn = this._isWarn();
         return (
-          <div className={  `${ p.className } ${ s['BhyTextFile'] } ${ isWarn && s['warn'] } ${ p.full && s['full'] } ${ $$data.get('focus') && 'focues' }`  }>
+          <div className={ `
+              ${ p.className }
+              ${ s['BhyTextFile'] }
+              ${ s['layout' + p.layout] }
+              ${ isWarn && s['warn'] } ${ p.full && s['full'] }
+              ${ $$data.get('focus') && s['focues'] }` }>
               { p.label != '' && p.showLabel && (
-                <div className={ s['BhyTextFile-label'] } style={ {width: `${ p.labelWith }`} }>
-                    <p>
-                        <label className={ s['BhyTextFile-label-name'] }>
-                            { p.label }
-                        </label>
-                        <label className={ s['BhyTextFile-label-mao'] }>
-                            :
-                        </label>
-                    </p>
+                <div className={ s['BhyTextFile-label'] } style={ {width: p.layout == 'y' ? '100%' : p.labelWith} }>
+                    <label className={ s['BhyTextFile-label-name'] }>{ p.label }</label>
+                    { p.layout != 'y' && (
+                      <label className={ s['BhyTextFile-label-mao'] }>:</label>
+                    ) }
                 </div>
               ) }
 
@@ -62,8 +75,8 @@ class Text extends React.Component {
                     value={ p.value }
                     placeholder={ p.placeholder }
                     onChange={ e => this.change(e, $$data) }
-                    onFocus={ e => $$data.set('focus', !0) }
-                    onBlur={ e => $$data.set('focus', !1) }
+                    onFocus={ e => this.focus(e, $$data) }
+                    onBlur={ e => this.blur(e, $$data) }
                   />
 
                   { isWarn && (
@@ -94,11 +107,12 @@ var en = {
     minErrorText: '[label] min length is [min]！',
     rexErrorText: '[label] format is wrong！',
     numberErrorText: '[label] must is number！',
-    emptyErrorText: '[label]not allow empty！',
+    emptyErrorText: '[label] not allow empty！',
 };
 Text.defaultProps = {
     theme: 'border',
     full: !1,
+    require: !0,
     max: 20,
     min: 2,
     label: '',
@@ -107,17 +121,22 @@ Text.defaultProps = {
     rexPassIsRight: !0,
     className: '',
     inputWith: '200px',
+    layout: 'x',
+    onFocus: () => {},
+    onBlur: () => {},
     ...en,
 };
 
 Text.propTypes = {
     className: React.PropTypes.string,
     labelWith: React.PropTypes.string,
+    layout: React.PropTypes.string,
+    theme: React.PropTypes.string,
+    language: React.PropTypes.string,
+
     showLabel: React.PropTypes.bool,
     inputWith: React.PropTypes.string,
     full: React.PropTypes.bool,
-    language: React.PropTypes.string,
-    theme: React.PropTypes.string,
     label: React.PropTypes.string,
     type: React.PropTypes.string,
     title: React.PropTypes.string,
@@ -138,6 +157,8 @@ Text.propTypes = {
     rexPassIsRight: React.PropTypes.bool,
     require: React.PropTypes.bool,
     onChange: React.PropTypes.fun,
+    onFocus: React.PropTypes.fun,
+    onBlur: React.PropTypes.fun,
     errorText: React.PropTypes.string,
 
 };
