@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Text from '../src/index'
+// import Text from '../dist/react-bhy-textfield'
+
 import {fromJS} from 'immutable'
 import {from} from 'immutable/contrib/cursor'
 import './index.styl'
@@ -24,14 +26,15 @@ class Main extends React.Component {
                     fullWidth: !1,
                     lineFocusColor: null,
                     lineErrorColor: null,
-                    errorTextColor:null,
+                    errorTextColor: null,
                 },
                 color: {
                     green: '#1ce02b',
-                    orange: 'orange'
+                    orange: 'orange',
+                    d1: '#ee40f1',
+                    red:'red'
                 }
             },
-
         })
     };
 
@@ -74,7 +77,7 @@ class Main extends React.Component {
                   </button>
 
                   <div className="lineFocusColor">
-                      <span>lineFocusColor:{ $$common.get('lineFocusColor') } -- </span>
+                      <span style={ {color:$$common.get('lineFocusColor')} }>lineFocusColor:{ $$common.get('lineFocusColor') } -- </span>
                       <button
                         style={ {backgroundColor: $$color.get('green')} }
                         onClick={ e => $$common.set('lineFocusColor', $$color.get('green')) }>
@@ -89,7 +92,7 @@ class Main extends React.Component {
                   </div>
 
                   <div className="">
-                      <span>lineErrorColor:{ $$common.get('lineErrorColor') } -- </span>
+                      <span style={ {color:$$common.get('lineErrorColor')} }>lineErrorColor:{ $$common.get('lineErrorColor') } -- </span>
                       <button
                         style={ {backgroundColor: $$color.get('green')} }
                         onClick={ e => $$common.set('lineErrorColor', $$color.get('green')) }>
@@ -101,10 +104,16 @@ class Main extends React.Component {
                         onClick={ e => $$common.set('lineErrorColor', $$color.get('orange')) }>
                           orgion
                       </button>
+
+                      <button
+                        style={ {backgroundColor: $$color.get('d1')} }
+                        onClick={ e => $$common.set('lineErrorColor', $$color.get('d1')) }>
+                          d1
+                      </button>
                   </div>
 
                   <div className="">
-                      <span>errorTextColor:{ $$common.get('errorTextColor') } -- </span>
+                      <span style={ {color:$$common.get('errorTextColor')} }>errorTextColor:{ $$common.get('errorTextColor') } -- </span>
                       <button
                         style={ {backgroundColor: $$color.get('green')} }
                         onClick={ e => $$common.set('errorTextColor', $$color.get('green')) }>
@@ -143,6 +152,7 @@ class Main extends React.Component {
                     labelWith={ labelWith }
                     label={ `password` }
                     type={ `password`}
+                    errorTextColor={ $$common.get('errorTextColor') }
                     lineErrorColor={ $$common.get('lineErrorColor') }
                     lineFocusColor={ $$common.get('lineFocusColor') }
                     full={ $$common.get('fullWidth') }
@@ -161,6 +171,7 @@ class Main extends React.Component {
                     label={ `user phone` }
                     theme={ $$common.get('theme') }
                     type={ `text` }
+                    errorTextColor={ $$common.get('errorTextColor') }
                     lineErrorColor={ $$common.get('lineErrorColor') }
                     lineFocusColor={ $$common.get('lineFocusColor') }
                     full={ $$common.get('fullWidth') }
@@ -178,6 +189,7 @@ class Main extends React.Component {
                     labelWith={ labelWith }
                     label={ `your gmail` }
                     type={ `text` }
+                    errorTextColor={ $$common.get('errorTextColor') }
                     lineErrorColor={ $$common.get('lineErrorColor') }
                     lineFocusColor={ $$common.get('lineFocusColor') }
                     full={ $$common.get('fullWidth') }
@@ -205,6 +217,7 @@ class Main extends React.Component {
                     type={ `password`}
                     layout={ $$common.get('layout') }
                     max={ 16 }
+                    errorTextColor={ $$common.get('errorTextColor') }
                     lineErrorColor={ $$common.get('lineErrorColor') }
                     lineFocusColor={ $$common.get('lineFocusColor') }
                     full={ $$common.get('fullWidth') }
@@ -219,6 +232,7 @@ class Main extends React.Component {
                     labelWith={ labelWith }
                     label={ `password2` }
                     type={ `password`}
+                    errorTextColor={ $$common.get('errorTextColor') }
                     lineErrorColor={ $$common.get('lineErrorColor') }
                     lineFocusColor={ $$common.get('lineFocusColor') }
                     theme={ $$common.get('theme') }

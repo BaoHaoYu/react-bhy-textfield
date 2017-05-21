@@ -36,17 +36,17 @@ module.exports = {
                             localIdentName: '[local]__[hash:base64:5]'
                         }
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function () {
-                                return [
-                                    require('precss'),
-                                    require('autoprefixer')({browsers: 'last 100 versions'})
-                                ];
-                            }
-                        }
-                    },
+                    // {
+                    //     loader: 'postcss-loader',
+                    //     options: {
+                    //         plugins: function () {
+                    //             return [
+                    //                 require('precss'),
+                    //                 require('autoprefixer')({browsers: 'last 100 versions'})
+                    //             ];
+                    //         }
+                    //     }
+                    // },
                     {loader: 'stylus-loader'},
                 ],
             },

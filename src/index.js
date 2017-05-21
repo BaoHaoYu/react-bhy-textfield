@@ -3,6 +3,8 @@ import s from './style.styl';
 import {fromJS} from 'immutable'
 import testInput from '../util/testInput'
 import {from} from 'immutable/contrib/cursor'
+import PropTypes from 'prop-types'
+
 class Text extends React.Component {
     constructor(props) {
         super(props);
@@ -124,6 +126,7 @@ Text.defaultProps = {
     require: !0,
     max: 20,
     min: 2,
+    value: '',
     label: '',
     errorText: '',
     showLabel: !0,
@@ -138,43 +141,43 @@ Text.defaultProps = {
 };
 
 Text.propTypes = {
-    className: React.PropTypes.string,
-    labelWith: React.PropTypes.string,
-    layout: React.PropTypes.string,
-    theme: React.PropTypes.string,
-    language: React.PropTypes.string,
-    size: React.PropTypes.string,
-    showLabel: React.PropTypes.bool,
-    inputWith: React.PropTypes.string,
-    full: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    type: React.PropTypes.string,
-    title: React.PropTypes.string,
-    name: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    passSetValue: React.PropTypes.bool,
-    value: React.PropTypes.string,
+    className: PropTypes.string,
+    labelWith: PropTypes.string,
+    layout: PropTypes.string,
+    theme: PropTypes.string,
+    language: PropTypes.string,
+    size: PropTypes.string,
+    showLabel: PropTypes.bool,
+    inputWith: PropTypes.string,
+    full: PropTypes.bool,
+    label: PropTypes.string,
+    type: PropTypes.string,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    passSetValue: PropTypes.bool,
+    value: PropTypes.string.isRequired,
 
-    max: React.PropTypes.number,
-    min: React.PropTypes.number,
-    maxErrorText: React.PropTypes.string,
-    minErrorText: React.PropTypes.string,
-    rexs: React.PropTypes.array,
-    rex: React.PropTypes.any,
-    rexErrorText: React.PropTypes.string,
-    emptyErrorText: React.PropTypes.string,
+    max: PropTypes.number,
+    min: PropTypes.number,
+    maxErrorText: PropTypes.string,
+    minErrorText: PropTypes.string,
+    rexs: PropTypes.array,
+    rex: PropTypes.any,
+    rexErrorText: PropTypes.string,
+    emptyErrorText: PropTypes.string,
 
-    rexPassIsRight: React.PropTypes.bool,
-    require: React.PropTypes.bool,
-    onChange: React.PropTypes.fun,
-    onFocus: React.PropTypes.fun,
-    onBlur: React.PropTypes.fun,
-    errorText: React.PropTypes.string,
+    rexPassIsRight: PropTypes.bool,
+    require: PropTypes.bool,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    errorText: PropTypes.string,
 
-    lineBorderColor: React.PropTypes.string,
-    lineFocusColor: React.PropTypes.string,
-    lineErrorColor: React.PropTypes.string,
-    errorTextColor: React.PropTypes.string,
+    lineBorderColor: PropTypes.string,
+    lineFocusColor: PropTypes.string,
+    lineErrorColor: PropTypes.string,
+    errorTextColor: PropTypes.string,
 };
 
 export default Text;

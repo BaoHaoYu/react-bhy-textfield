@@ -11,6 +11,8 @@ module.exports = {
         libraryTarget: 'umd'
     },
 
+    target: 'node',
+
     watch: !0,
 
     module: {
@@ -49,18 +51,10 @@ module.exports = {
                     {loader: 'stylus-loader'},
                 ],
             },
-
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ],
-            },
         ],
     },
 
-    externals: ['react', 'immutable', 'immutable/contrib/cursor'],
+    externals: ['react', 'immutable', 'immutable/contrib/cursor', 'prop-types'],
 
     plugins: [
         // mini
