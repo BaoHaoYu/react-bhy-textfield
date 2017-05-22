@@ -1,11 +1,1 @@
-dist
 node_modules
-src
-util
-.babelrc
-__test__
-package.json
-webpack.config.js
-webpack.config.test.js
-webpack.config.dll.js
-npm-debug.log
