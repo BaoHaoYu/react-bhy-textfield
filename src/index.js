@@ -37,7 +37,7 @@ class Text extends React.Component {
               <div className={ `${ s['BhyTextFile-input'] } ${ p.iconClass && s['hasIcon'] }` } style={ {width: p.full ? '100%' : p.inputWith} }>
                   { p.iconClass && (
                     <div className={ s['boxIcon'] }>
-                        <i className={ p.iconClass }/>
+                        <i className={ p.iconClass } style={ {left: p.iconOffset.left, top: p.iconOffset.top} }/>
                     </div>
                   ) }
                   <input
@@ -106,7 +106,7 @@ class Text extends React.Component {
         var value = e.target.value;
         var info = testInput(value, p);
         if (p.passSetValue && !info.pass) {
-            
+
         } else {
             $$data.set('errorText', info.errorText);
             p.onChange({e, value, ...info});
@@ -144,6 +144,7 @@ Text.defaultProps = {
     onFocus: () => {},
     onBlur: () => {},
     onChange: () => {},
+    iconOffset: {left: 0, top: 0},
     ...en,
 };
 
@@ -188,6 +189,9 @@ Text.propTypes = {
     errorTextColor: PropTypes.string,
 
     iconClass: PropTypes.string,
+
+    // TODO
+    iconOffset: PropTypes.object,
 };
 
 export default Text;
