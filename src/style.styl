@@ -10,15 +10,12 @@ lineDefaultPading = 6px 6px
 .BhyTextFile
     position relative
     display table
-    &.name
-        display block
     *
         margin 0
         padding 0
         box-sizing border-box
     input
         outline 0
-
     &.line // theme line
         position static
         .BhyTextFile
@@ -26,7 +23,7 @@ lineDefaultPading = 6px 6px
                 input
                     box-shadow none
                     border none
-                    padding-left 2px
+                    padding-left 8px
                     padding-bottom 6px
                     &:focus
                         box-shadow none
@@ -75,8 +72,20 @@ lineDefaultPading = 6px 6px
         .BhyTextFile
             &-input
                 input
-                    padding 3px 5px
+                    padding 3px 8px
                     height auto
+    &.sm.border // theme border 小尺寸
+        .BhyTextFile
+            &-input
+                .boxIcon // 图标
+                i
+                    font-size 15px
+    &.sm.line // theme line 小尺寸
+        .BhyTextFile
+            &-input
+                .boxIcon // 图标
+                i
+                    font-size 16px
     &.layouty // 垂直布局
         .BhyTextFile
             &-label
@@ -115,7 +124,7 @@ lineDefaultPading = 6px 6px
                 &-mao
                     color warnColor
 
-    &.warn.border // 带有边框的警告
+    &.warn.border // theme border 警告样式
         .BhyTextFile
             &-input
                 input
@@ -124,7 +133,7 @@ lineDefaultPading = 6px 6px
                     &:focus
                         border-color #843534
                         box-shadow inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483
-    &.warn.line
+    &.warn.line // theme line 警告样式
         .BhyTextFile
             &-boxLine // 底部直线，无边框的input
                 .before

@@ -253,7 +253,6 @@ class Main extends React.Component {
                         lineFocusColor={ $$common.get('lineFocusColor') }
                         full={ $$common.get('fullWidth') }
                         size={ $$common.get('size') }
-                        iconClass={ `fa fa-key` }
                         min={ 4 }
                         theme={ $$common.get('theme') }
                         value={ $$cInput.get('password1') }
@@ -263,7 +262,6 @@ class Main extends React.Component {
                       <Text
                         labelWith={ labelWith }
                         label={ `password2` }
-                        iconClass={ `fa fa-key` }
                         type={ `password`}
                         placeholder={ `password 2` }
                         showLabel={ $$common.get('showLabel') }
