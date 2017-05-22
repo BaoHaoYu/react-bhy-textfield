@@ -24,6 +24,7 @@ class Main extends React.Component {
                     theme: 'line',
                     size: 'default',
                     fullWidth: !1,
+                    showLabel:!0,
                     lineFocusColor: null,
                     lineErrorColor: null,
                     errorTextColor: null,
@@ -76,6 +77,11 @@ class Main extends React.Component {
                       fullWidth :{ $$common.get('fullWidth') ? 'true' : 'false' }
                   </button>
 
+                  <button
+                    className=""
+                    onClick={ e => $$common.update('showLabel', v => !v) }>
+                      showLabel :{ $$common.get('showLabel') ? 'true' : 'false' }
+                  </button>
                   <div className="lineFocusColor">
                       <span style={ {color: $$common.get('lineFocusColor')} }>lineFocusColor:{ $$common.get('lineFocusColor') }
                           -- </span>
@@ -147,6 +153,7 @@ class Main extends React.Component {
                         iconClass={ `fa fa-address-book` }
                         label={ `username` }
                         type={ `text`}
+                        showLabel={ $$common.get('showLabel') }
                         full={ $$common.get('fullWidth') }
                         max={ 16 }
                         errorTextColor={ $$common.get('errorTextColor') }
@@ -166,6 +173,7 @@ class Main extends React.Component {
                         labelWith={ labelWith }
                         label={ `password` }
                         type={ `password`}
+                        showLabel={ $$common.get('showLabel') }
                         iconClass={ `fa fa-key` }
                         errorTextColor={ $$common.get('errorTextColor') }
                         lineErrorColor={ $$common.get('lineErrorColor') }
@@ -186,6 +194,7 @@ class Main extends React.Component {
                         label={ `user phone` }
                         theme={ $$common.get('theme') }
                         type={ `text` }
+                        showLabel={ $$common.get('showLabel') }
                         iconClass={ `fa fa-phone` }
                         placeholder={ `phone` }
                         errorTextColor={ $$common.get('errorTextColor') }
@@ -208,6 +217,7 @@ class Main extends React.Component {
                         placeholder={ `gmail , no outlook` }
                         iconClass={ `fa fa-envelope-o` }
                         type={ `text` }
+                        showLabel={ $$common.get('showLabel') }
                         errorTextColor={ $$common.get('errorTextColor') }
                         lineErrorColor={ $$common.get('lineErrorColor') }
                         lineFocusColor={ $$common.get('lineFocusColor') }
@@ -236,6 +246,7 @@ class Main extends React.Component {
                         type={ `password`}
                         layout={ $$common.get('layout') }
                         max={ 16 }
+                        showLabel={ $$common.get('showLabel') }
                         placeholder={ `password 1` }
                         errorTextColor={ $$common.get('errorTextColor') }
                         lineErrorColor={ $$common.get('lineErrorColor') }
@@ -255,6 +266,7 @@ class Main extends React.Component {
                         iconClass={ `fa fa-key` }
                         type={ `password`}
                         placeholder={ `password 2` }
+                        showLabel={ $$common.get('showLabel') }
                         errorTextColor={ $$common.get('errorTextColor') }
                         lineErrorColor={ $$common.get('lineErrorColor') }
                         lineFocusColor={ $$common.get('lineFocusColor') }

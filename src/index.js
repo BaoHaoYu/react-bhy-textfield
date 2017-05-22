@@ -62,8 +62,6 @@ class Text extends React.Component {
                     <p className={ s['BhyTextFile-errorText'] } style={ {color: p.errorTextColor} }>{ p.errorText || $$data.get('errorText') }</p>
                   ) }
               </div>
-
-
           </div>
         );
     }
@@ -119,7 +117,6 @@ var cn = {
     maxErrorText: '[label]不可以超过[max]个字符！',
     minErrorText: '[label]不可少于[min]个字符！',
     rexErrorText: '[label]格式不对！',
-    numberErrorText: '[label]必须是数组！',
     emptyErrorText: '[label]不可为空！',
 };
 
@@ -127,7 +124,6 @@ var en = {
     maxErrorText: '[label] max length is [max]！',
     minErrorText: '[label] min length is [min]！',
     rexErrorText: '[label] format is wrong！',
-    numberErrorText: '[label] must is number！',
     emptyErrorText: '[label] not allow empty！',
 };
 Text.defaultProps = {

@@ -160,15 +160,20 @@ function rex(value, props) {
 // load the styles
 var content = __webpack_require__(7);
 if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(9)(content, {});
+var update = __webpack_require__(9)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/_css-loader@0.27.3@css-loader/index.js??ref--1-1!../../../node_modules/_postcss-loader@1.3.3@postcss-loader/index.js??ref--1-2!../../../node_modules/_stylus-loader@3.0.1@stylus-loader/index.js!./style.styl", function() {
-			var newContent = require("!!../../../node_modules/_css-loader@0.27.3@css-loader/index.js??ref--1-1!../../../node_modules/_postcss-loader@1.3.3@postcss-loader/index.js??ref--1-2!../../../node_modules/_stylus-loader@3.0.1@stylus-loader/index.js!./style.styl");
+		module.hot.accept("!!../node_modules/.css-loader@0.28.1@css-loader/index.js??ref--1-1!../node_modules/.postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--1-2!../node_modules/.stylus-loader@3.0.1@stylus-loader/index.js!./style.styl", function() {
+			var newContent = require("!!../node_modules/.css-loader@0.28.1@css-loader/index.js??ref--1-1!../node_modules/.postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--1-2!../node_modules/.stylus-loader@3.0.1@stylus-loader/index.js!./style.styl");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -283,10 +288,10 @@ var Text = function (_React$Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-input'], style: { width: p.full ? '100%' : p.inputWith } },
+                    { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-input'] + ' ' + (p.iconClass && __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['hasIcon']), style: { width: p.full ? '100%' : p.inputWith } },
                     p.iconClass && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-input-icon'] },
+                        { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['boxIcon'] },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: p.iconClass })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
@@ -294,6 +299,7 @@ var Text = function (_React$Component) {
                         title: p.title,
                         name: p.name,
                         value: p.value,
+                        defaultValue: p.defaultValue,
                         placeholder: p.placeholder,
                         onChange: function onChange(e) {
                             return _this2.change(e, $$data);
@@ -308,7 +314,7 @@ var Text = function (_React$Component) {
                     p.theme == 'line' && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['BhyTextFile-boxLine'] + ' ' + ($$data.get('focus') && __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['focus']) },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: '' + __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['before'], style: { backgroundColor: p.lineBorderColor } }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: '' + __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['before'], style: { backgroundColor: isWarn ? p.lineErrorColor : p.lineBorderColor } }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: '' + __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['after'], style: { backgroundColor: isWarn ? p.lineErrorColor : p.lineFocusColor } })
                     ),
                     isWarn && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -360,8 +366,10 @@ var Text = function (_React$Component) {
             var p = this.props;
             var value = e.target.value;
             var info = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util_testInput__["a" /* default */])(value, p);
-            $$data.set('errorText', info.errorText);
-            p.onChange(_extends({ e: e, value: value }, info));
+            if (p.passSetValue && !info.pass) {} else {
+                $$data.set('errorText', info.errorText);
+                p.onChange(_extends({ e: e, value: value }, info));
+            }
         }
     }]);
 
@@ -372,7 +380,6 @@ var cn = {
     maxErrorText: '[label]不可以超过[max]个字符！',
     minErrorText: '[label]不可少于[min]个字符！',
     rexErrorText: '[label]格式不对！',
-    numberErrorText: '[label]必须是数组！',
     emptyErrorText: '[label]不可为空！'
 };
 
@@ -380,7 +387,6 @@ var en = {
     maxErrorText: '[label] max length is [max]！',
     minErrorText: '[label] min length is [min]！',
     rexErrorText: '[label] format is wrong！',
-    numberErrorText: '[label] must is number！',
     emptyErrorText: '[label] not allow empty！'
 };
 Text.defaultProps = _extends({
@@ -399,7 +405,8 @@ Text.defaultProps = _extends({
     size: 'default', // sm
     layout: 'x',
     onFocus: function onFocus() {},
-    onBlur: function onBlur() {}
+    onBlur: function onBlur() {},
+    onChange: function onChange() {}
 }, en);
 
 Text.propTypes = {
@@ -418,7 +425,8 @@ Text.propTypes = {
     name: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     placeholder: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     passSetValue: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-    value: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string.isRequired,
+    value: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.any.isRequired,
+    defaultValue: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.any,
 
     max: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.number,
     min: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.number,
@@ -441,7 +449,6 @@ Text.propTypes = {
     lineErrorColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     errorTextColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
 
-    // TODO
     iconClass: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string
 };
 
@@ -456,7 +463,7 @@ exports = module.exports = __webpack_require__(8)(undefined);
 
 
 // module
-exports.push([module.i, ".BhyTextFile__2qCkP {\n  position: relative;\n  display: table;\n}\n.BhyTextFile__2qCkP.name__1B72S {\n  display: block;\n}\n.BhyTextFile__2qCkP * {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.BhyTextFile__2qCkP input {\n  outline: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ {\n  position: static;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  border: none;\n  padding-left: 2px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  outline: 0;\n  border: none;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 {\n  position: absolute;\n  width: 100%;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  width: 100%;\n  content: '';\n  position: absolute;\n  bottom: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU {\n  content: '';\n  height: 1px;\n  background: #dcdcdc;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  height: 3px;\n  background: #69d8ff;\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  -moz-transition: all 0.3s;\n  transition: all 0.3s;\n  margin: auto;\n  width: 0;\n  position: relative;\n  bottom: -1px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6.focus__w05wE .after__1ZMNA {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.border__3GkEX {\n  position: static;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  border: 1px solid #ccc;\n  -webkit-border-radius: 4px;\n     -moz-border-radius: 4px;\n          border-radius: 4px;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n  outline: 0;\n  border-color: #66afe9;\n}\n.BhyTextFile__2qCkP.sm__1hHBN {\n  position: static;\n}\n.BhyTextFile__2qCkP.sm__1hHBN .BhyTextFile-input__1GDB_ input {\n  padding: 3px 5px;\n  height: auto;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-label__HZgu7 {\n  display: block;\n  text-align: left;\n  margin-bottom: 4px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 {\n  position: static;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-name__31sW9, .BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-mao__12F-d {\n  color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n  border-color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6.focus__w05wE .after__1ZMNA {\n  background: #a94442;\n}\n.BhyTextFile__2qCkP.full__1jffd {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.full__1jffd .BhyTextFile-input__1GDB_ {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.focus__w05wE {\n  position: static;\n}\n.BhyTextFile-label__HZgu7 {\n  display: table-cell;\n  vertical-align: middle;\n  text-align: right;\n}\n.BhyTextFile-label__HZgu7 > * {\n  display: inline-block;\n  font-size: 14px;\n  color: #575757;\n  position: relative;\n  top: -1px;\n}\n.BhyTextFile-label-mao__12F-d {\n  margin: 0 5px;\n}\n.BhyTextFile-input__1GDB_ {\n  vertical-align: middle;\n  position: relative;\n}\n.BhyTextFile-input__1GDB_ input {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 10px;\n  font-size: 14px;\n  line-height: 1.428;\n  color: #555;\n  background-color: #fff;\n  background-image: none;\n}\n.BhyTextFile-input__1GDB_ input::-webkit-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-ms-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-errorText__1Oyhs {\n  font-size: 12px;\n  color: #a94442;\n  position: absolute;\n  margin-top: 3px;\n}\n", ""]);
+exports.push([module.i, ".BhyTextFile__2qCkP {\n  position: relative;\n  display: table;\n}\n.BhyTextFile__2qCkP.name__1B72S {\n  display: block;\n}\n.BhyTextFile__2qCkP * {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.BhyTextFile__2qCkP input {\n  outline: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ {\n  position: static;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  border: none;\n  padding-left: 2px;\n  padding-bottom: 6px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  outline: 0;\n  border: none;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 {\n  position: absolute;\n  width: 100%;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  width: 100%;\n  content: '';\n  position: absolute;\n  bottom: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU {\n  content: '';\n  height: 1px;\n  background: #dcdcdc;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  height: 2px;\n  background: #69d8ff;\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  -moz-transition: all 0.3s;\n  transition: all 0.3s;\n  margin: auto;\n  width: 0;\n  position: relative;\n  bottom: -1px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6.focus__w05wE .after__1ZMNA {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.border__3GkEX {\n  position: static;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  border: 1px solid #ccc;\n  -webkit-border-radius: 4px;\n     -moz-border-radius: 4px;\n          border-radius: 4px;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n  outline: 0;\n  border-color: #66afe9;\n}\n.BhyTextFile__2qCkP.sm__1hHBN {\n  position: static;\n}\n.BhyTextFile__2qCkP.sm__1hHBN .BhyTextFile-input__1GDB_ input {\n  padding: 3px 5px;\n  height: auto;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-label__HZgu7 {\n  display: block;\n  text-align: left;\n  margin-bottom: 2px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  text-align: center;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c i {\n  color: #a2a2a2;\n  font-size: 17px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-label__HZgu7 {\n  margin-bottom: 0;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  padding-left: 25px !important;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  left: 0;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 {\n  position: static;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-name__31sW9, .BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-mao__12F-d {\n  color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n  border-color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  background: #a94442;\n}\n.BhyTextFile__2qCkP.full__1jffd {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.full__1jffd .BhyTextFile-input__1GDB_ {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.focus__w05wE {\n  position: static;\n}\n.BhyTextFile-label__HZgu7 {\n  display: table-cell;\n  vertical-align: middle;\n  text-align: right;\n}\n.BhyTextFile-label__HZgu7 > * {\n  display: inline-block;\n  font-size: 14px;\n  color: #575757;\n  position: relative;\n  top: -1px;\n}\n.BhyTextFile-label-mao__12F-d {\n  margin: 0 5px;\n}\n.BhyTextFile-input__1GDB_ {\n  vertical-align: middle;\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 {\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  left: 8px;\n  text-align: center;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c i {\n  color: #a2a2a2;\n  font-size: 17px;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 34px !important;\n}\n.BhyTextFile-input__1GDB_ input {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 8px;\n  font-size: 14px;\n  line-height: 1.428;\n  color: #555;\n  background-color: #fff;\n  background-image: none;\n}\n.BhyTextFile-input__1GDB_ input::-webkit-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-ms-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-errorText__1Oyhs {\n  font-size: 12px;\n  color: #a94442;\n  position: absolute;\n  margin-top: 3px;\n}\n", ""]);
 
 // exports
 exports.locals = {
@@ -472,10 +479,12 @@ exports.locals = {
 	"sm": "sm__1hHBN",
 	"layouty": "layouty__3_MwW",
 	"BhyTextFile-label": "BhyTextFile-label__HZgu7",
+	"boxIcon": "boxIcon__35u3c",
 	"warn": "warn__IJQC6",
 	"BhyTextFile-label-name": "BhyTextFile-label-name__31sW9",
 	"BhyTextFile-label-mao": "BhyTextFile-label-mao__12F-d",
 	"full": "full__1jffd",
+	"hasIcon": "hasIcon__ysp82",
 	"BhyTextFile-errorText": "BhyTextFile-errorText__1Oyhs"
 };
 
@@ -539,7 +548,7 @@ function cssWithMappingToString(item, useSourceMap) {
 		return content;
 	}
 
-	if (useSourceMap) {
+	if (useSourceMap && typeof btoa === 'function') {
 		var sourceMapping = toComment(cssMapping);
 		var sourceURLs = cssMapping.sources.map(function (source) {
 			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
@@ -553,10 +562,11 @@ function cssWithMappingToString(item, useSourceMap) {
 
 // Adapted from convert-source-map (MIT)
 function toComment(sourceMap) {
-  var base64 = new Buffer(JSON.stringify(sourceMap)).toString('base64');
-  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
 
-  return '/*# ' + data + ' */';
+	return '/*# ' + data + ' */';
 }
 
 
@@ -618,7 +628,7 @@ module.exports = function(list, options) {
 	// By default, add <style> tags to the bottom of the target
 	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
 
-	var styles = listToStyles(list);
+	var styles = listToStyles(list, options);
 	addStylesToDom(styles, options);
 
 	return function update(newList) {
@@ -630,7 +640,7 @@ module.exports = function(list, options) {
 			mayRemove.push(domStyle);
 		}
 		if(newList) {
-			var newStyles = listToStyles(newList);
+			var newStyles = listToStyles(newList, options);
 			addStylesToDom(newStyles, options);
 		}
 		for(var i = 0; i < mayRemove.length; i++) {
@@ -666,12 +676,12 @@ function addStylesToDom(styles, options) {
 	}
 }
 
-function listToStyles(list) {
+function listToStyles(list, options) {
 	var styles = [];
 	var newStyles = {};
 	for(var i = 0; i < list.length; i++) {
 		var item = list[i];
-		var id = item[0];
+		var id = options.base ? item[0] + options.base : item[0];
 		var css = item[1];
 		var media = item[2];
 		var sourceMap = item[3];
@@ -740,7 +750,24 @@ function attachTagAttrs(element, attrs) {
 }
 
 function addStyle(obj, options) {
-	var styleElement, update, remove;
+	var styleElement, update, remove, transformResult;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    transformResult = options.transform(obj.css);
+	    
+	    if (transformResult) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = transformResult;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css. 
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
 
 	if (options.singleton) {
 		var styleIndex = singletonCounter++;
