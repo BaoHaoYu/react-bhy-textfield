@@ -118,7 +118,7 @@ var cn = {
     maxErrorText: '[label]不可以超过[max]个字符！',
     minErrorText: '[label]不可少于[min]个字符！',
     rexErrorText: '[label]格式不对！',
-    emptyErrorText: '[label]不可为空！',
+    emptyErrorText: '请填写[label]！',
 };
 
 var en = {
@@ -131,8 +131,6 @@ Text.defaultProps = {
     theme: 'border',
     full: !1,
     require: !0,
-    max: 20,
-    min: 2,
     value: '',
     label: '',
     errorText: '',
@@ -146,7 +144,7 @@ Text.defaultProps = {
     onBlur: () => {},
     onChange: () => {},
     iconOffset: {left: 0, top: 0},
-    ...en,
+    ...cn,
 };
 
 Text.propTypes = {
