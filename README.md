@@ -11,7 +11,7 @@ https://baohaoyu.github.io/react-bhy-textfield/index.html
 | labelWith       | string        |                       | label的宽度 |
 | layout          | string        |                       | 布局 x:水平布局  y:垂直布局 |
 | theme           | string        | 'border'              | 样式：border:带有边框  line:只有下边框 |
-| language        | string        |                       | TODO |
+| language        | string        |                       | TODO 语言：'en' or 'cn',目前只有cn |
 | size            | string        |                       | input的尺寸 sm:小尺寸  |
 | showLabel       | bool          |                       | 是否显示label |
 | inputWith       | string        |                       | input的宽度 |
@@ -26,7 +26,7 @@ https://baohaoyu.github.io/react-bhy-textfield/index.html
 | defaultValue    | any           |                       | input标签的defaultValue |
 | max             | number        |                       | 最多字符长度 |
 | min             | number        |                       | 最小字符长度 |
-| maxErrorText    | string        | [label]不可以超过[max]个字符！ | 超过最多字符限制后显示的警告 |
+| maxErrorText    | string        | [label]不可以超过[max]个字符！ | 超过最多字符限制后显示的警告,会自动他[label]替换成props.label,[max]替换成props.max |
 | minErrorText    | string        | [label]不可少于[min]个字符！  | 少于最少字符限制后显示的警告 |
 | rexs            | array         |                       | 正则表达式 [{rex:'正则表达式',passIsRight:true 正则表达式匹配表示正确 false 正则表达式匹配表示错误,errorText:没有通过验证显示的警告内容}] |
 | rex             | rex           |                       | 单个正则表达式 |
@@ -42,7 +42,7 @@ https://baohaoyu.github.io/react-bhy-textfield/index.html
 | lineFocusColor  | string        |                       | porps.theme == 'line'的时候 ,input获得焦点后动画线的颜色 |
 | lineErrorColor  | string        |                       | porps.theme == 'line'的时候 ,警告状态下，input获得焦点后动画线的颜色 |
 | errorTextColor  | string        |                       | 警告状态下，错误提示，label，input的颜色 |
-| iconClass       | string        |                       | input左侧的小图标的class, |
+| iconClass       | string        |                       | input左侧的小图标的class,推销使用 font awesome |
 | iconOffset      | object        | {left: 0, top: 0}     | input左侧的小图标的位置偏移 |
 | inputHeight     | number        |                       | input的高度 |
 
