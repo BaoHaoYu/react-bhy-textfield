@@ -41,6 +41,7 @@ class Text extends React.Component {
                     </div>
                   ) }
                   <input
+                    style={ {height: p.inputHeight} }
                     type={ p.type }
                     title={ p.title }
                     name={ p.name }
@@ -189,9 +190,9 @@ Text.propTypes = {
     errorTextColor: PropTypes.string,
 
     iconClass: PropTypes.string,
-
-    // TODO
     iconOffset: PropTypes.object,
+
+    inputHeight: PropTypes.number,
 };
 
 export default Text;

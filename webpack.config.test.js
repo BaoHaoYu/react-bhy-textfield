@@ -32,7 +32,7 @@ module.exports = {
                         options: {
                             modules: !0,
                             importLoaders: 1,
-                            // sourceMap: !0,
+                            sourceMap: !0,
                             localIdentName: '[local]__[hash:base64:5]'
                         }
                     },
