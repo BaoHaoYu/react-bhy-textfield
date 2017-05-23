@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Text from '../src/index'
-// import Text from '../dist/react-bhy-textfield'
+// import Text from '../src/index'
+import Text from '../dist/react-bhy-textfield'
 
 import {fromJS} from 'immutable'
 import {from} from 'immutable/contrib/cursor'

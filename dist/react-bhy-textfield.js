@@ -292,9 +292,10 @@ var Text = function (_React$Component) {
                     p.iconClass && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: __WEBPACK_IMPORTED_MODULE_1__style_styl___default.a['boxIcon'] },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: p.iconClass })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: p.iconClass, style: { left: p.iconOffset.left, top: p.iconOffset.top } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                        style: { height: p.inputHeight },
                         type: p.type,
                         title: p.title,
                         name: p.name,
@@ -380,7 +381,7 @@ var cn = {
     maxErrorText: '[label]不可以超过[max]个字符！',
     minErrorText: '[label]不可少于[min]个字符！',
     rexErrorText: '[label]格式不对！',
-    emptyErrorText: '[label]不可为空！'
+    emptyErrorText: '请填写[label]！'
 };
 
 var en = {
@@ -393,8 +394,6 @@ Text.defaultProps = _extends({
     theme: 'border',
     full: !1,
     require: !0,
-    max: 20,
-    min: 2,
     value: '',
     label: '',
     errorText: '',
@@ -406,8 +405,9 @@ Text.defaultProps = _extends({
     layout: 'x',
     onFocus: function onFocus() {},
     onBlur: function onBlur() {},
-    onChange: function onChange() {}
-}, en);
+    onChange: function onChange() {},
+    iconOffset: { left: 0, top: 0 }
+}, cn);
 
 Text.propTypes = {
     className: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
@@ -449,7 +449,10 @@ Text.propTypes = {
     lineErrorColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
     errorTextColor: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
 
-    iconClass: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string
+    iconClass: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
+    iconOffset: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object,
+
+    inputHeight: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.number
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Text);
@@ -463,29 +466,29 @@ exports = module.exports = __webpack_require__(8)(undefined);
 
 
 // module
-exports.push([module.i, ".BhyTextFile__2qCkP {\n  position: relative;\n  display: table;\n}\n.BhyTextFile__2qCkP.name__1B72S {\n  display: block;\n}\n.BhyTextFile__2qCkP * {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.BhyTextFile__2qCkP input {\n  outline: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ {\n  position: static;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  border: none;\n  padding-left: 2px;\n  padding-bottom: 6px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  outline: 0;\n  border: none;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 {\n  position: absolute;\n  width: 100%;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  width: 100%;\n  content: '';\n  position: absolute;\n  bottom: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU {\n  content: '';\n  height: 1px;\n  background: #dcdcdc;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  height: 2px;\n  background: #69d8ff;\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  -moz-transition: all 0.3s;\n  transition: all 0.3s;\n  margin: auto;\n  width: 0;\n  position: relative;\n  bottom: -1px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6.focus__w05wE .after__1ZMNA {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.border__3GkEX {\n  position: static;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  border: 1px solid #ccc;\n  -webkit-border-radius: 4px;\n     -moz-border-radius: 4px;\n          border-radius: 4px;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n  outline: 0;\n  border-color: #66afe9;\n}\n.BhyTextFile__2qCkP.sm__1hHBN {\n  position: static;\n}\n.BhyTextFile__2qCkP.sm__1hHBN .BhyTextFile-input__1GDB_ input {\n  padding: 3px 5px;\n  height: auto;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-label__HZgu7 {\n  display: block;\n  text-align: left;\n  margin-bottom: 2px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  text-align: center;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c i {\n  color: #a2a2a2;\n  font-size: 17px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-label__HZgu7 {\n  margin-bottom: 0;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  padding-left: 25px !important;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  left: 0;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 {\n  position: static;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-name__31sW9, .BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-mao__12F-d {\n  color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n  border-color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  background: #a94442;\n}\n.BhyTextFile__2qCkP.full__1jffd {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.full__1jffd .BhyTextFile-input__1GDB_ {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.focus__w05wE {\n  position: static;\n}\n.BhyTextFile-label__HZgu7 {\n  display: table-cell;\n  vertical-align: middle;\n  text-align: right;\n}\n.BhyTextFile-label__HZgu7 > * {\n  display: inline-block;\n  font-size: 14px;\n  color: #575757;\n  position: relative;\n  top: -1px;\n}\n.BhyTextFile-label-mao__12F-d {\n  margin: 0 5px;\n}\n.BhyTextFile-input__1GDB_ {\n  vertical-align: middle;\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 {\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  left: 8px;\n  text-align: center;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c i {\n  color: #a2a2a2;\n  font-size: 17px;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 34px !important;\n}\n.BhyTextFile-input__1GDB_ input {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 8px;\n  font-size: 14px;\n  line-height: 1.428;\n  color: #555;\n  background-color: #fff;\n  background-image: none;\n}\n.BhyTextFile-input__1GDB_ input::-webkit-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-ms-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-errorText__1Oyhs {\n  font-size: 12px;\n  color: #a94442;\n  position: absolute;\n  margin-top: 3px;\n}\n", ""]);
+exports.push([module.i, ".BhyTextFile__2qCkP {\n  position: relative;\n  display: table;\n}\n.BhyTextFile__2qCkP * {\n  margin: 0;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n     -moz-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.BhyTextFile__2qCkP input {\n  outline: 0;\n}\n.BhyTextFile-label__HZgu7 {\n  display: table-cell;\n  vertical-align: middle;\n  text-align: right;\n}\n.BhyTextFile-label__HZgu7 > * {\n  display: inline-block;\n  font-size: 14px;\n  color: #575757;\n  position: relative;\n  top: -1px;\n}\n.BhyTextFile-label-mao__12F-d {\n  margin: 0 5px;\n}\n.BhyTextFile-input__1GDB_ {\n  vertical-align: middle;\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 {\n  position: relative;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  left: 8px;\n  text-align: center;\n  display: table;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 .boxIcon__35u3c i {\n  color: #a2a2a2;\n  display: table-cell;\n  vertical-align: middle;\n  position: relative;\n  font-size: 17px;\n}\n.BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 34px;\n}\n.BhyTextFile-input__1GDB_ input {\n  display: block;\n  width: 100%;\n  height: 34px;\n  padding: 6px 8px;\n  font-size: 14px;\n  line-height: 1.428;\n  color: #555;\n  background-color: #fff;\n  background-image: none;\n}\n.BhyTextFile-input__1GDB_ input::-webkit-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::-moz-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input:-ms-input-placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-input__1GDB_ input::placeholder {\n  color: #b6b6b6;\n}\n.BhyTextFile-errorText__1Oyhs {\n  font-size: 12px;\n  color: #a94442;\n  position: absolute;\n  margin-top: 3px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  border: none;\n  padding-left: 8px;\n  padding-bottom: 6px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: none;\n     -moz-box-shadow: none;\n          box-shadow: none;\n  outline: 0;\n  border: none;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 {\n  position: absolute;\n  width: 100%;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  width: 100%;\n  content: '';\n  position: absolute;\n  bottom: 0;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU {\n  content: '';\n  height: 1px;\n  background: #dcdcdc;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  height: 2px;\n  background: #69d8ff;\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  -moz-transition: all 0.3s;\n  transition: all 0.3s;\n  margin: auto;\n  width: 0;\n  position: relative;\n  bottom: -1px;\n}\n.BhyTextFile__2qCkP.line__1_edJ .BhyTextFile-boxLine__2PrI6.focus__w05wE .after__1ZMNA {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  border: 1px solid #ccc;\n  -webkit-border-radius: 4px;\n     -moz-border-radius: 4px;\n          border-radius: 4px;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s, -moz-box-shadow ease-in-out 0.15s;\n}\n.BhyTextFile__2qCkP.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);\n  outline: 0;\n  border-color: #66afe9;\n}\n.BhyTextFile__2qCkP.sm__1hHBN .BhyTextFile-input__1GDB_ input {\n  padding: 3px 8px;\n  height: 30px;\n}\n.BhyTextFile__2qCkP.sm__1hHBN.border__3GkEX .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.sm__1hHBN.border__3GkEX .BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 34px;\n}\n.BhyTextFile__2qCkP.sm__1hHBN.line__1_edJ .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.sm__1hHBN.line__1_edJ .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  display: static;\n}\n.BhyTextFile__2qCkP.layoutx__3HbII.line__1_edJ .BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 36px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-label__HZgu7 {\n  display: block;\n  text-align: left;\n  margin-bottom: 2px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  text-align: center;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW .BhyTextFile-input__1GDB_ .boxIcon__35u3c i {\n  color: #a2a2a2;\n  font-size: 17px;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-label__HZgu7 {\n  margin-bottom: 0;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ {\n  display: block;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ input {\n  padding-left: 0;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_ .boxIcon__35u3c {\n  left: 0;\n}\n.BhyTextFile__2qCkP.layouty__3_MwW.line__1_edJ .BhyTextFile-input__1GDB_.hasIcon__ysp82 input {\n  padding-left: 28px;\n}\n.BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-name__31sW9, .BhyTextFile__2qCkP.warn__IJQC6 .BhyTextFile-label-mao__12F-d {\n  color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input {\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);\n  border-color: #a94442;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.border__3GkEX .BhyTextFile-input__1GDB_ input:focus {\n  border-color: #843534;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n          box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 6px #ce8483;\n}\n.BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .before__3x7FU, .BhyTextFile__2qCkP.warn__IJQC6.line__1_edJ .BhyTextFile-boxLine__2PrI6 .after__1ZMNA {\n  background: #a94442;\n}\n.BhyTextFile__2qCkP.full__1jffd {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.full__1jffd .BhyTextFile-input__1GDB_ {\n  width: 100%;\n}\n.BhyTextFile__2qCkP.focus__w05wE {\n  position: static;\n}\n", ""]);
 
 // exports
 exports.locals = {
 	"BhyTextFile": "BhyTextFile__2qCkP",
-	"name": "name__1B72S",
-	"line": "line__1_edJ",
+	"BhyTextFile-label": "BhyTextFile-label__HZgu7",
+	"BhyTextFile-label-mao": "BhyTextFile-label-mao__12F-d",
 	"BhyTextFile-input": "BhyTextFile-input__1GDB_",
+	"hasIcon": "hasIcon__ysp82",
+	"boxIcon": "boxIcon__35u3c",
+	"BhyTextFile-errorText": "BhyTextFile-errorText__1Oyhs",
+	"line": "line__1_edJ",
 	"BhyTextFile-boxLine": "BhyTextFile-boxLine__2PrI6",
 	"before": "before__3x7FU",
 	"after": "after__1ZMNA",
 	"focus": "focus__w05wE",
 	"border": "border__3GkEX",
 	"sm": "sm__1hHBN",
+	"layoutx": "layoutx__3HbII",
 	"layouty": "layouty__3_MwW",
-	"BhyTextFile-label": "BhyTextFile-label__HZgu7",
-	"boxIcon": "boxIcon__35u3c",
 	"warn": "warn__IJQC6",
 	"BhyTextFile-label-name": "BhyTextFile-label-name__31sW9",
-	"BhyTextFile-label-mao": "BhyTextFile-label-mao__12F-d",
-	"full": "full__1jffd",
-	"hasIcon": "hasIcon__ysp82",
-	"BhyTextFile-errorText": "BhyTextFile-errorText__1Oyhs"
+	"full": "full__1jffd"
 };
 
 /***/ }),
